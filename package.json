@@ -1,0 +1,16 @@
+{
+  "name": "fr-server",
+  "version": "0.0.1",
+  "main": "frserver.js",
+  "dependencies": {
+    "director": "^1.2.3",
+    "ecstatic": "^0.5.6",
+    "flatiron": "^0.4.2",
+    "restify": "^2.8.3",
+    "union": "^0.4.3"
+  },
+  "scripts": {
+    "postinstall": "npm link fr-infra",
+    "postupdate": "npm link fr-infra"
+  }
+}
