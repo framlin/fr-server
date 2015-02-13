@@ -3,11 +3,6 @@ var union = require('union'),
     flatiron = require('flatiron');
 
 
-
-
-
-
-
 function SiteServer() {
     var ecstatic = require('ecstatic'),
         webserver = new flatiron.App(),
@@ -19,13 +14,6 @@ function SiteServer() {
         }
     }
 
-
-    webserver.use(flatiron.plugins.http);
-    webserver.http.before = [
-        RESTDispatcher,
-        ecstatic(__dirname + '/../site')
-    ];
-
     this.getRouter = function getRouter() {
         return router;
     };
@@ -34,14 +22,19 @@ function SiteServer() {
         return webserver;
     };
 
-    this.start = function start(siteName, siteRouting, siteBuilder) {
+    this.start = function start(rootPath, siteName, siteRouting, siteBuilder) {
         var serverPort = require('fr-infra').ServerConfig[siteName].port;
+
+        webserver.use(flatiron.plugins.http);
+        webserver.http.before = [
+            RESTDispatcher,
+            ecstatic(rootPath)
+        ];
 
         siteRouting.configure(siteName, router, siteBuilder, function cbConfigured() {
             webserver.start(serverPort);
         });
     };
-
 
 }
 
