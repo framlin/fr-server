@@ -6,7 +6,6 @@
     "director": "^1.2.3",
     "ecstatic": "^0.5.6",
     "flatiron": "^0.4.2",
-    "restify": "^2.8.3",
     "union": "^0.4.6"
   },
   "scripts": {
